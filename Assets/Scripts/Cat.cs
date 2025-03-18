@@ -14,7 +14,6 @@ public class Cat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Application.targetFrameRate = 60;
         float x = Random.Range(-9.9f, 9.0f);
         float y = 30.0f;
         transform.position = new Vector2(x, y);
@@ -25,6 +24,9 @@ public class Cat : MonoBehaviour
     {
         if (energy < full) {
             transform.position += Vector3.down * 0.05f;
+            if (transform.position.y < -16.0f) {
+                GameManager.Instance.GameOver();
+            }
         }
         else {
             if (transform.position.x > 0) {
@@ -48,6 +50,7 @@ public class Cat : MonoBehaviour
                 if (energy == 5.0f) {
                     hungryCat.SetActive(false);
                     fullCat.SetActive(true);
+                    Destroy(gameObject, 3.0f);
                 }
             }
             // SetActive를 바꿔 주는 함수를 if문 밖에 else로 처리했을 때는 게이지가 다 차도 바로 바뀌지 않았음
