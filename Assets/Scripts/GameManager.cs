@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance; // 게임 매니저를 외부에서 접근할 수 있게 싱글톤
 
     public GameObject normalCat;
+    public GameObject fatCat;
     public GameObject retryBtn;
 
     public RectTransform levelFront;
@@ -41,6 +42,23 @@ public class GameManager : MonoBehaviour
 
     void MakeCat () {
         Instantiate(normalCat);
+
+        if(level == 1) {
+            // lv.1 20% 확률로 고양이 더 생산
+            int p = Random.Range(0, 10);
+            if (p < 2)
+                Instantiate(normalCat);
+        } else if (level == 2) {
+            // lv.2 50% 확률로 고양이 더 생산
+            int p = Random.Range(0, 10);
+            if (p < 5)
+                Instantiate(normalCat);
+        } else if (level == 3) {
+            // lv.3 뚱뚱한 고양이 생산
+            Instantiate(fatCat);
+        }
+        
+        
     }
 
     public void GameOver() {
