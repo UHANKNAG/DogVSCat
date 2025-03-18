@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject normalCat;
     public GameObject fatCat;
+    public GameObject pirateCat;
+
     public GameObject retryBtn;
 
     public RectTransform levelFront;
@@ -56,6 +58,8 @@ public class GameManager : MonoBehaviour
         } else if (level == 3) {
             // lv.3 뚱뚱한 고양이 생산
             Instantiate(fatCat);
+        } else if (level == 4) {
+            Instantiate(pirateCat);
         }
         
         
