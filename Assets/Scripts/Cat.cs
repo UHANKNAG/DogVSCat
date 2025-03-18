@@ -11,6 +11,8 @@ public class Cat : MonoBehaviour
     float full = 5.0f;
     float energy = 0.0f;
 
+    bool isFull = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,9 +50,13 @@ public class Cat : MonoBehaviour
                 Destroy(collision.gameObject);
                 // 충돌한 food는 삭제
                 if (energy == 5.0f) {
-                    hungryCat.SetActive(false);
-                    fullCat.SetActive(true);
-                    Destroy(gameObject, 3.0f);
+                    if (!isFull) {
+                        isFull = true;
+                        hungryCat.SetActive(false);
+                        fullCat.SetActive(true);
+                        Destroy(gameObject, 3.0f);
+                        GameManager.Instance.AddScore();
+                    }
                 }
             }
             // SetActive를 바꿔 주는 함수를 if문 밖에 else로 처리했을 때는 게이지가 다 차도 바로 바뀌지 않았음
